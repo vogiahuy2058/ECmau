@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/mnuRecent"
+        android:icon="@drawable/recent"
+        android:title="RECENT"/>
+
+    <item android:id="@+id/mnuNumber"
+        android:icon="@drawable/hashtag"
+        android:title="NUMBER" />
+
+    <item android:id="@+id/mnunName"
+        android:icon="@drawable/name"
+        android:title="NAME" />
+
+    <item android:id="@+id/mnuCP"
+        android:icon="@drawable/cp"
+        android:title="COMBAT POWER" />
+
+</menu>

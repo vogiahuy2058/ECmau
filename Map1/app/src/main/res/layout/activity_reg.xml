@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/raids_loading"
+    android:orientation="vertical"
+    tools:context=".RegistrationActivity">
+
+    <EditText
+        android:id="@+id/edtUserNameRegister"
+        android:layout_width="244dp"
+        android:layout_height="57dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="80dp"
+        android:ems="10"
+        android:hint="Tên tài khoản"
+        android:inputType="textPersonName"
+        android:textColorHint="@android:color/black" />
+
+    <EditText
+        android:id="@+id/edtPasswordRegister"
+        android:layout_width="244dp"
+        android:layout_height="57dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="80dp"
+        android:ems="10"
+        android:hint="Mật khẩu"
+        android:inputType="textPassword"
+        android:textColorHint="@android:color/black" />
+
+    <EditText
+        android:id="@+id/edtRetype"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="80dp"
+        android:ems="10"
+        android:hint="Nhập lại mật khẩu"
+        android:inputType="textPassword"
+        android:textColorHint="@android:color/black" />
+
+    <Button
+        android:id="@+id/btnRegReg"
+        android:layout_width="244dp"
+        android:layout_height="57dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="80dp"
+        android:backgroundTint="#ffd600"
+        android:text="ĐĂNG KÍ"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+</LinearLayout>
