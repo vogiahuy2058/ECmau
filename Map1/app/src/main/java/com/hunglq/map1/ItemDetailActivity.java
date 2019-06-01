@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.hunglq.map1.ShopActivity.cartList;
 import static com.hunglq.map1.ShopActivity.database;
 
 public class ItemDetailActivity extends AppCompatActivity {
@@ -93,17 +94,30 @@ public class ItemDetailActivity extends AppCompatActivity {
     private void addToCart() {
 
         ContentValues values = new ContentValues();
+        for(int i = 0; i < cartList.size(); i++){
+            if(cartList.get(i).getItemid() == item.getId()){
+                cartList.get(i).setAmount(quantity + cartList.get(i).getAmount());
+                values.put("amount", quantity + cartList.get(i).getAmount());
+                long kq =database.update("cart", values, "uid = ? AND itemid = ?",
+                        new String[]{MainActivity.uid, String.valueOf(item.getId())});
+                if (kq > 0) {
+                    finish();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Update fail!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
         values.put("uid", MainActivity.uid);
         values.put("itemid", item.getId());
         values.put("amount", quantity);
-
         long kq = database.insert("cart", null, values);
         if (kq > 0) {
             ShopActivity.cartList.add(new Cart(MainActivity.uid, item.getId(), quantity));
             finish();
         }
         else
-            Toast.makeText(ItemDetailActivity.this, "Somethong went wrong!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ItemDetailActivity.this, "Add fail!", Toast.LENGTH_SHORT).show();
     }
 
     public void backToMap(View view) {

@@ -39,6 +39,7 @@ public class ShopActivity extends AppCompatActivity {
     EditText edtSearch;
     ImageView imgCart;
     TextView txtCart;
+    int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class ShopActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shop);
 
         processCopy();
+        database = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
         getCartItem();
 
         edtSearch = findViewById(R.id.edtSearchShop);
@@ -56,8 +58,12 @@ public class ShopActivity extends AppCompatActivity {
         shopItemAdapter= new ShopItemAdapter(this,R.layout.shop_item);
         gvShop.setAdapter(shopItemAdapter);
 
+        count = 0;
         if(cartList.size() > 0){
-            txtCart.setText(cartList.size()+"");
+            for(int i = 0; i < cartList.size(); i++){
+                count+=cartList.get(i).getAmount();
+            }
+            txtCart.setText(count+"");
         } else {
             txtCart.setText("");
         }
@@ -112,9 +118,9 @@ public class ShopActivity extends AppCompatActivity {
         });
     }
 
-    private void getCartItem() {
-        database = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
-        Cursor cursor = database.rawQuery("Select * from cart", null);
+    public void getCartItem() {
+        Cursor cursor = database.rawQuery("Select * from cart where uid = ?",
+                new String[]{MainActivity.uid});
         if(cartList!=null){
             cartList.clear();
         }
@@ -127,6 +133,19 @@ public class ShopActivity extends AppCompatActivity {
         cursor.close();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        count = 0;
+        if(cartList.size() > 0){
+            for(int i = 0; i < cartList.size(); i++){
+                count+=cartList.get(i).getAmount();
+            }
+            txtCart.setText(count+"");
+        } else {
+            txtCart.setText("");
+        }
+    }
 
     public void backToMap(View view) {
         finish();

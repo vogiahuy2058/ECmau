@@ -2,6 +2,7 @@ package com.hunglq.map1.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -47,9 +48,8 @@ public class CartAdapter extends ArrayAdapter<Cart> {
         Item item = items.get(cart.getItemid() - 1);
 
         txtName.setText(item.getName());
-        txtPrice.setText(item.getPrice()+"");
+        txtPrice.setText("$"+item.getPrice());
         txtAmount.setText(cart.getAmount()+"");
-        amount = cart.getAmount();
         Picasso.get()
                 .load(item.getImage())
                 .placeholder(android.R.drawable.ic_menu_report_image)
@@ -66,8 +66,24 @@ public class CartAdapter extends ArrayAdapter<Cart> {
         imgPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                amount = 1;
-                txtAmount.setText(amount+"");
+                amount = getItem(position).getAmount();
+                amount += 1;
+                getItem(position).setAmount(amount);
+                notifyDataSetChanged();
+            }
+        });
+
+        imgMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                amount = getItem(position).getAmount();
+                if(amount > 1){
+                    amount -= 1;
+                    getItem(position).setAmount(amount);
+                    notifyDataSetChanged();
+                } else {
+                    remove(getItem(position));
+                }
             }
         });
 

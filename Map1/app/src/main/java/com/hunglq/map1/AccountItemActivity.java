@@ -72,11 +72,13 @@ public class AccountItemActivity extends AppCompatActivity {
                                         jsonObject.getInt("ItemId"),
                                         jsonObject.getInt("Amount")
                                 ));
-                                adapter.add(new AccountItem(
-                                        jsonObject.getString("UID"),
-                                        jsonObject.getInt("ItemId"),
-                                        jsonObject.getInt("Amount")
-                                ));
+                                if(jsonObject.getInt("Amount") > 0){
+                                    adapter.add(new AccountItem(
+                                            jsonObject.getString("UID"),
+                                            jsonObject.getInt("ItemId"),
+                                            jsonObject.getInt("Amount")
+                                    ));
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

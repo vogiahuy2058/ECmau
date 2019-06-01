@@ -33,7 +33,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     // Webservice URL
     //public final static String url = "http://pokebizute15.000webhostapp.com/";
-    public final static String url = "http://172.20.10.6:8080/androidwebservice/";
+    public final static String url = "http://172.168.80.135:85/androidwebservice/";
     public static String uid;
     EditText edtUID, edtPwd;
     Button btnLogin, btnReg;
